@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", system-ui;
+    margin: 0;
+}
+
+h2 {
+    font-weight: 500;
+}
+
+a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: black;
+    padding: 12px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: lightgrey;
+}
+
+.active {
+    color: white;
+    background-color: blue;
+    border-radius: 8px;
+}
+
+a:hover {
+    background-color: gray;
+    border-radius: 8px;
+    color: white;
+}
+
+.header-left {
+    display: flex;
+}
+
+.header-left a {
+    font-weight: 700;
+}
+
+.header-right {
+    display: flex;
+    gap: 24px;
+}
+
+.main-container {
+    padding: 0 28px;
+}
+
+.form-book {
+    display: flex;
+    gap: 12px;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.search-book {
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    height: 56px;
+    width: 450px;
+    padding: 12px;
+}
+
+.submit-book {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: blue;
+    color: white;
+    height: 56px;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.submit-book:hover, .active:hover {
+    background-color: #0000bb;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+  }

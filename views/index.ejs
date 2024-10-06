@@ -4,71 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
 
-    <form action="/searchBook" method="post">
-        <input type="text" placeholder="Enter a book title" name="title" autocomplete="on">
-        <button type="submit">Enter</button>
-        <p></p> <%# Spacing %>
-    </form>
+    <div class="header">
+        <div class="header-left">
+            <a href="">Book Web App</a>
+        </div>
 
-    <form action="/sort" method="post">
-        <button name="sortAlphabetical" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Alphabetical</button>
-        <button name="sortRecent" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Recency</button>
-        <button name="sortRating" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Ratings</button>
-    </form>
+        <div class="header-right">
+            <a href="" class="active">Home</a>
+            <a href="">About</a>
+            <a href="">Contact</a>
+        </div>
+    </div>
 
-    <div class="book-container">
-        <%  book.forEach(b => { %>
+    <div class="main-container">
 
-        <img src="<%=b.img_url%>" alt="Book Image" style="width: 200px; height: 300px; object-fit: cover;">
-        
-        <p> <%= b.title %> </p>
+        <h1>Discover</h1>
 
-        <p> <%= b.author %> </p>
-
-        <p> <%= b.publish_year %> </p>
-
-        <p> <%= b.isbn %> </p>
-
-        <p id="textId<%= b.id %>"> <%= b.edit_text %> </p>
-        <p id="starId<%= b.id %>">Rating: <%= b.rating %> </p>
-        
-        <button id="editId<%= b.id %>" onclick="edit('<%= b.id %>')">Edit</button>
-        
-        <form action="/editContent" method="post">
-            <input type="hidden" name="editId" value=<%= b.book_id %>>
-            <textarea id="inputId<%= b.id %>" name="inputText" hidden><%=b.edit_text%></textarea>
-            <p></p> <%# Spacing %>
-
-            <div id="starEditId<%= b.id %>" hidden>
-                <input type="radio" name="star" value=1 required>
-                <label for="one">One</label>
-    
-                <input type="radio" name="star" value=2 required>
-                <label for="two">Two</label>
-    
-                <input type="radio" name="star" value=3 required>
-                <label for="three">Three</label>
-    
-                <input type="radio" name="star" value=4 required>
-                <label for="four">Four</label>
-    
-                <input type="radio" name="star" value=5 required>
-                <label for="five">Five</label>
-            </div>
-            <p></p> <%# Spacing %>
-
-            <button id="saveId<%= b.id %>" type="submit" hidden>Save</button>
+        <form action="/searchBook" method="post" class="form-book">
+            <input type="text" placeholder="Enter a book title" name="title" autocomplete="on" class="search-book">
+            <button type="submit" class="submit-book">
+                <img src="/images/search.svg" alt="search icon"> Search
+            </button>
         </form>
 
-        <form action="/deleteBook" method="post">
-            <button type="submit" name="delete" value=<%=b.book_id%>>Delete</button>
-        </form>
+        <div class="book-container">
+            <h2>Book Reviews</h2>
 
-        <% }) %>
+            <form action="/sort" method="post">
+                <button name="sortAlphabetical" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Alphabetical</button>
+                <button name="sortRecent" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Recency</button>
+                <button name="sortRating" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Ratings</button>
+            </form>    
+
+            <%  book.forEach(b => { %>
+
+            <img src="<%=b.img_url%>" alt="Book Image" style="width: 200px; height: 300px; object-fit: cover;">
+            
+            <p> <%= b.title %> </p>
+
+            <p> <%= b.author %> </p>
+
+            <p> <%= b.publish_year %> </p>
+
+            <p> <%= b.isbn %> </p>
+
+            <p id="textId<%= b.id %>"> <%= b.edit_text %> </p>
+            <p id="starId<%= b.id %>">Rating: <%= b.rating %> </p>
+            
+            <button id="editId<%= b.id %>" onclick="edit('<%= b.id %>')">Edit</button>
+            
+            <form action="/editContent" method="post">
+                <input type="hidden" name="editId" value=<%= b.book_id %>>
+                <textarea id="inputId<%= b.id %>" name="inputText" hidden><%=b.edit_text%></textarea>
+
+                <div id="starEditId<%= b.id %>" hidden>
+                    <input type="radio" name="star" value=1 required>
+                    <label for="one">One</label>
+        
+                    <input type="radio" name="star" value=2 required>
+                    <label for="two">Two</label>
+        
+                    <input type="radio" name="star" value=3 required>
+                    <label for="three">Three</label>
+        
+                    <input type="radio" name="star" value=4 required>
+                    <label for="four">Four</label>
+        
+                    <input type="radio" name="star" value=5 required>
+                    <label for="five">Five</label>
+                </div>
+
+                <button id="saveId<%= b.id %>" type="submit" hidden>Save</button>
+            </form>
+
+            <form action="/deleteBook" method="post">
+                <button type="submit" name="delete" value=<%=b.book_id%>>Delete</button>
+            </form>
+
+            <% }) %>
+        </div>
+
     </div>
 
     <script>

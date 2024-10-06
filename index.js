@@ -124,8 +124,6 @@ app.post("/sort", async (req, res) => {
     }
 
     try {
-        
-
         res.redirect("/");
     } catch (err) {
         console.log(err);

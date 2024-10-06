@@ -1,4 +1,4 @@
-# Books Project
+# Books Web App
 
 A web application for managing a collection of books. This project allows users to add books, edit their content and ratings, delete books, and sort the collection.
 
