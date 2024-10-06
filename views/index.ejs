@@ -27,21 +27,32 @@
 
         <h1>Discover</h1>
 
-        <form action="/searchBook" method="post" class="form-book">
-            <input type="text" placeholder="Enter a book title" name="title" autocomplete="on" class="search-book">
-            <button type="submit" class="submit-book">
-                <img src="/images/search.svg" alt="search icon"> Search
-            </button>
+        <form action="/searchBook" method="post">
+            <div class="form-book">
+                <input type="text" placeholder="Enter a book title" name="title" autocomplete="on" class="search-book">
+                <button type="submit" class="submit-book">
+                        <img src="/images/search.svg" alt="search icon"> <p>Search</p>
+                </button>
+            </div>
         </form>
 
         <div class="book-container">
-            <h2>Book Reviews</h2>
 
-            <form action="/sort" method="post">
-                <button name="sortAlphabetical" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Alphabetical</button>
-                <button name="sortRecent" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Recency</button>
-                <button name="sortRating" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Ratings</button>
-            </form>    
+            <div class="sort-container">
+                <h2>Book Reviews</h2>
+
+                <div>
+                    <button class="dropdownbtn" id="myDropdownBtn" onclick="dropdown()">Sort by</button>
+
+                    <div class="dropdown" id="myDropdown">
+                        <form action="/sort" method="post">
+                            <button name="sortAlphabetical" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Alphabetical</button>
+                            <button name="sortRecent" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Recency</button>
+                            <button name="sortRating" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Ratings</button>
+                        </form>  
+                    </div>
+                </div>
+            </div>
 
             <%  book.forEach(b => { %>
 
@@ -94,6 +105,10 @@
     </div>
 
     <script>
+        function dropdown() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
         function edit(id) {
             document.querySelector("#textId"+id).setAttribute("hidden", true);
             document.querySelector("#editId"+id).setAttribute("hidden", true);
