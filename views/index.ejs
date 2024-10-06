@@ -31,32 +31,34 @@
             <div class="form-book">
                 <input type="text" placeholder="Enter a book title" name="title" autocomplete="on" class="search-book">
                 <button type="submit" class="submit-book">
-                        <img src="/images/search.svg" alt="search icon"> <p>Search</p>
+                        <img src="/images/add.svg" alt="search icon"> <p>Add Book</p>
                 </button>
             </div>
         </form>
 
-        <div class="book-container">
-
-            <div class="sort-container">
+        <div class="sort-container">
                 <h2>Book Reviews</h2>
 
-                <div>
-                    <button class="dropdownbtn" id="myDropdownBtn" onclick="dropdown()">Sort by</button>
+            <div>
+                <button class="dropdownbtn" id="myDropdownBtn" onclick="dropdown()">Sort by</button>
 
-                    <div class="dropdown" id="myDropdown">
-                        <form action="/sort" method="post">
-                            <button name="sortAlphabetical" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Alphabetical</button>
-                            <button name="sortRecent" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Recency</button>
+                <div class="dropdown" id="myDropdown">
+                    <form action="/sort" method="post">
+                        <button name="sortAlphabetical" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Alphabetical</button>
+                        <button name="sortRecent" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Recency</button>
                             <button name="sortRating" value="<%= sort === 'ASC' ? 'DESC' : 'ASC' %>" type="submit">Sort by Ratings</button>
-                        </form>  
-                    </div>
+                    </form>  
                 </div>
             </div>
+        </div>
+        
+        <div class="book-container">
 
             <%  book.forEach(b => { %>
 
-            <img src="<%=b.img_url%>" alt="Book Image" style="width: 200px; height: 300px; object-fit: cover;">
+            <div class="book-item">
+
+            <img class="book-cover" src="<%=b.img_url%>" alt="Book Image">
             
             <p> <%= b.title %> </p>
 
@@ -99,9 +101,10 @@
                 <button type="submit" name="delete" value=<%=b.book_id%>>Delete</button>
             </form>
 
+            </div>
             <% }) %>
-        </div>
 
+        </div>
     </div>
 
     <script>
