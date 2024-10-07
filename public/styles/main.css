@@ -18,6 +18,21 @@ a {
     padding: 12px;
 }
 
+textarea {
+    width: 350px;
+    height: 100px;
+    resize: none;
+    border: none;
+    font-size: 16px;
+    padding: 8px;
+    background-color: #f1f1f1;
+}
+
+footer {
+    text-align: center;
+    margin: 125px 0 25px 0;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -109,6 +124,7 @@ a:hover {
 
 .dropdown2 {
     transform: translateX(-10px);
+    width: 350px;
 }
 
 .dropdown button:hover, .dropdownbtn:hover, .dropdown2 button:hover {
@@ -118,6 +134,7 @@ a:hover {
 
 .show {
     display: block;
+    background-color: #f1f1f1;
 }
 
 .dropdownbtn {
@@ -126,6 +143,15 @@ a:hover {
     border-radius: 4px;
     padding: 12px 24px;
     cursor: pointer;
+}
+
+.star-rating {
+    background-color: #f1f1f1;
+    padding: 8px;
+}
+
+.rating-text {
+    margin-top: 0;
 }
 
 .book-container {

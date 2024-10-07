@@ -78,21 +78,23 @@
                         <input type="hidden" name="editId" value=<%= b.book_id %>>
                         <textarea id="inputId<%= b.id %>" name="inputText" hidden><%=b.edit_text%></textarea>
     
-                        <div id="starEditId<%= b.id %>" hidden>
+                        <div id="starEditId<%= b.id %>" class="star-rating" hidden>
+                            <p class="rating-text">Rating</p>
+
                             <input type="radio" name="star" value=1 required>
-                            <label for="one">One</label>
+                            <label for="one"></label>
                 
                             <input type="radio" name="star" value=2 required>
-                            <label for="two">Two</label>
+                            <label for="two"></label>
                 
                             <input type="radio" name="star" value=3 required>
-                            <label for="three">Three</label>
+                            <label for="three"></label>
                 
                             <input type="radio" name="star" value=4 required>
-                            <label for="four">Four</label>
+                            <label for="four"></label>
                 
                             <input type="radio" name="star" value=5 required>
-                            <label for="five">Five</label>
+                            <label for="five"></label>
                         </div>
     
                         <button id="saveId<%= b.id %>" type="submit" hidden>Save</button>
@@ -102,7 +104,7 @@
                         <button type="submit" id="deleteId<%= b.id %>" name="delete" value=<%=b.book_id%>>Delete</button>
                     </form>
 
-                    <button value="Cancel" onclick="history.back()">Cancel</button>
+                    <button value="Cancel" onclick="cancel('<%= b.id %>')" id="cancel">Cancel</button>
                 </div>
 
             </div>
@@ -112,6 +114,10 @@
 
         </div>
     </div>
+    
+    <footer>
+        © 2024 Book Web App
+    </footer>
 
     <script>
         function dropdown() {
@@ -123,14 +129,16 @@
         }
 
         function edit(id) {
-            document.querySelector("#textId"+id).setAttribute("hidden", true);
             document.querySelector("#editId"+id).setAttribute("hidden", true);
-            document.querySelector("#starId"+id).setAttribute("hidden", true);
             document.querySelector("#deleteId"+id).setAttribute("hidden", true);
 
             document.querySelector("#saveId"+id).removeAttribute("hidden");
             document.querySelector("#inputId"+id).removeAttribute("hidden");
             document.querySelector("#starEditId"+id).removeAttribute("hidden");
+        }
+
+        function cancel(id) {
+            document.getElementById("myDropdown2"+id).classList.remove("show");
         }
 
     </script>
