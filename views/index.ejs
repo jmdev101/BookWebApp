@@ -40,7 +40,7 @@
                 <h2>Book Reviews</h2>
 
             <div>
-                <button class="dropdownbtn" id="myDropdownBtn" onclick="dropdown()">Sort by</button>
+                <button class="dropdownbtn" onclick="dropdown()">Sort by</button>
 
                 <div class="dropdown" id="myDropdown">
                     <form action="/sort" method="post">
@@ -60,46 +60,52 @@
 
             <img class="book-cover" src="<%=b.img_url%>" alt="Book Image">
             
-            <p> <%= b.title %> </p>
+            <h3 class="book-title"> <%= b.title %> </h3>
 
-            <p> <%= b.author %> </p>
+            <h4 class="book-author"> <%= b.author %> </h4>
 
-            <p> <%= b.publish_year %> </p>
-
-            <p> <%= b.isbn %> </p>
+            <h5 class="book-year-isbn">Publication year: <%= b.publish_year %> | ISBN: <%= b.isbn %> </h5>
 
             <p id="textId<%= b.id %>"> <%= b.edit_text %> </p>
             <p id="starId<%= b.id %>">Rating: <%= b.rating %> </p>
             
-            <button id="editId<%= b.id %>" onclick="edit('<%= b.id %>')">Edit</button>
-            
-            <form action="/editContent" method="post">
-                <input type="hidden" name="editId" value=<%= b.book_id %>>
-                <textarea id="inputId<%= b.id %>" name="inputText" hidden><%=b.edit_text%></textarea>
+            <div>
+                <button class="dropdownbtn" onclick="dropdown2('<%= b.id %>')">More Actions</button>
 
-                <div id="starEditId<%= b.id %>" hidden>
-                    <input type="radio" name="star" value=1 required>
-                    <label for="one">One</label>
-        
-                    <input type="radio" name="star" value=2 required>
-                    <label for="two">Two</label>
-        
-                    <input type="radio" name="star" value=3 required>
-                    <label for="three">Three</label>
-        
-                    <input type="radio" name="star" value=4 required>
-                    <label for="four">Four</label>
-        
-                    <input type="radio" name="star" value=5 required>
-                    <label for="five">Five</label>
+                <div class="dropdown2" id="myDropdown2<%= b.id %>">
+                    <button id="editId<%= b.id %>" onclick="edit('<%= b.id %>')">Edit</button>
+                    <form action="/editContent" method="post">
+                        <input type="hidden" name="editId" value=<%= b.book_id %>>
+                        <textarea id="inputId<%= b.id %>" name="inputText" hidden><%=b.edit_text%></textarea>
+    
+                        <div id="starEditId<%= b.id %>" hidden>
+                            <input type="radio" name="star" value=1 required>
+                            <label for="one">One</label>
+                
+                            <input type="radio" name="star" value=2 required>
+                            <label for="two">Two</label>
+                
+                            <input type="radio" name="star" value=3 required>
+                            <label for="three">Three</label>
+                
+                            <input type="radio" name="star" value=4 required>
+                            <label for="four">Four</label>
+                
+                            <input type="radio" name="star" value=5 required>
+                            <label for="five">Five</label>
+                        </div>
+    
+                        <button id="saveId<%= b.id %>" type="submit" hidden>Save</button>
+                    </form>
+    
+                    <form action="/deleteBook" method="post">
+                        <button type="submit" id="deleteId<%= b.id %>" name="delete" value=<%=b.book_id%>>Delete</button>
+                    </form>
+
+                    <button value="Cancel" onclick="history.back()">Cancel</button>
                 </div>
 
-                <button id="saveId<%= b.id %>" type="submit" hidden>Save</button>
-            </form>
-
-            <form action="/deleteBook" method="post">
-                <button type="submit" name="delete" value=<%=b.book_id%>>Delete</button>
-            </form>
+            </div>
 
             </div>
             <% }) %>
@@ -112,10 +118,15 @@
             document.getElementById("myDropdown").classList.toggle("show");
         }
 
+        function dropdown2(id) {
+            document.getElementById("myDropdown2"+id).classList.toggle("show");
+        }
+
         function edit(id) {
             document.querySelector("#textId"+id).setAttribute("hidden", true);
             document.querySelector("#editId"+id).setAttribute("hidden", true);
             document.querySelector("#starId"+id).setAttribute("hidden", true);
+            document.querySelector("#deleteId"+id).setAttribute("hidden", true);
 
             document.querySelector("#saveId"+id).removeAttribute("hidden");
             document.querySelector("#inputId"+id).removeAttribute("hidden");
