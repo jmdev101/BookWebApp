@@ -190,6 +190,30 @@ a:hover {
     font-weight: 400;
 }
 
+.star-rating {
+    height: 120px;
+}
+
+.star-rating label {
+    color: #90A0A3;
+    float: right;
+  }
+  
+.star-rating label:before {
+    margin: 10.9px;
+    font-size: 2.5rem;
+    font-family: FontAwesome;
+    content: "\f005";
+}
+
+.star-rating > input {
+    display: none;
+}
+
+.star-rating input:checked ~ label {
+    color: #FFC107;
+}
+
 @media (max-width: 1400px) {
 
     .book-item {

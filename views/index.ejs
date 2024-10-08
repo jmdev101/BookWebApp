@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
 
@@ -81,20 +82,20 @@
                         <div id="starEditId<%= b.id %>" class="star-rating" hidden>
                             <p class="rating-text">Rating</p>
 
-                            <input type="radio" name="star" value=1 required>
-                            <label for="one"></label>
-                
-                            <input type="radio" name="star" value=2 required>
-                            <label for="two"></label>
-                
-                            <input type="radio" name="star" value=3 required>
-                            <label for="three"></label>
-                
-                            <input type="radio" name="star" value=4 required>
-                            <label for="four"></label>
-                
-                            <input type="radio" name="star" value=5 required>
-                            <label for="five"></label>
+                            <input type="radio" id="five<%= b.id %>" name="star" value=5>
+                            <label for="five<%= b.id %>"></label>
+
+                            <input type="radio" id="four<%= b.id %>" name="star" value=4>
+                            <label for="four<%= b.id %>"></label>
+
+                            <input type="radio" id="three<%= b.id %>" name="star" value=3>
+                            <label for="three<%= b.id %>"></label>
+
+                            <input type="radio" id="two<%= b.id %>" name="star" value=2>
+                            <label for="two<%= b.id %>"></label>
+
+                            <input type="radio" id="one<%= b.id %>" name="star" value=1>
+                            <label for="one<%= b.id %>"></label>
                         </div>
     
                         <button id="saveId<%= b.id %>" type="submit" hidden>Save</button>
