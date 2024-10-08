@@ -14,7 +14,7 @@
 
     <div class="header">
         <div class="header-left">
-            <a href="">Book Web App</a>
+            <a href="" class="logo">Book Web App</a>
         </div>
 
         <div class="header-right">
@@ -40,7 +40,7 @@
         <div class="sort-container">
                 <h2>Book Reviews</h2>
 
-            <div>
+            <div class="dropdown-container">
                 <button class="dropdownbtn" onclick="dropdown()">Sort by</button>
 
                 <div class="dropdown" id="myDropdown">
@@ -68,9 +68,9 @@
             <h5 class="book-year-isbn">Publication year: <%= b.publish_year %> | ISBN: <%= b.isbn %> </h5>
 
             <p id="textId<%= b.id %>"> <%= b.edit_text %> </p>
-            <p id="starId<%= b.id %>">Rating: <%= b.rating %> </p>
+            <p class="p-rating" id="starId<%= b.id %>"> <%= b.rating %> </p>
             
-            <div>
+            <div class="actions-container">
                 <button class="dropdownbtn" onclick="dropdown2('<%= b.id %>')">More Actions</button>
 
                 <div class="dropdown2" id="myDropdown2<%= b.id %>">
@@ -101,14 +101,28 @@
                         <button id="saveId<%= b.id %>" type="submit" hidden>Save</button>
                     </form>
     
-                    <form action="/deleteBook" method="post">
-                        <button type="submit" id="deleteId<%= b.id %>" name="delete" value=<%=b.book_id%>>Delete</button>
-                    </form>
+                    <button class="delete-button" onclick="document.getElementById('modalId<%= b.id %>').style.display='block'" id="deleteId<%= b.id %>" >Delete</button>
 
-                    <button value="Cancel" onclick="cancel('<%= b.id %>')" id="cancel">Cancel</button>
+                    <button class="cancel-button" value="Cancel" onclick="cancel('<%= b.id %>')" id="cancel">Cancel</button>
                 </div>
 
             </div>
+
+                <div id="modalId<%= b.id %>" class="modal">
+                    <span onclick="document.getElementById('modalId<%= b.id %>').style.display='none'" class="close" title="Close Modal">×</span>
+
+                    <form class="modal-content" action="/deleteBook" method="post">
+                        <div class="container">
+                          <h2>Delete Book</h2>
+                          <h3>Are you sure you want to delete "<%= b.title %>"?</h3>
+                        
+                          <div class="clearfix">
+                            <button type="button" onclick="document.getElementById('modalId<%= b.id %>').style.display='none'" class="cancelbtn">Cancel</button>
+                            <button class="deletebtn" type="submit" id="deleteId<%= b.id %>" name="delete" value=<%=b.book_id%>>Delete</button>
+                          </div>
+                        </div>
+                      </form>
+                </div>
 
             </div>
             <% }) %>
@@ -121,6 +135,8 @@
     </footer>
 
     <script>
+
+
         function dropdown() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
